@@ -1,7 +1,9 @@
+/** @type {import('eslint').Linter.Config} */
 module.exports = {
   root: true,
   ignorePatterns: ['.eslintrc.cjs'],
-  parserOptions: { project: true, tsconfigRootDir: __dirname },
+  env: { es6: false, es2020: true, es2024: false, browser: true },
+  parserOptions: { project: true, ecmaVersion: 11, tsconfigRootDir: __dirname },
 
   extends: [
     'airbnb',
