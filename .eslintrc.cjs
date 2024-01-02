@@ -17,4 +17,13 @@ module.exports = {
   ],
 
   settings: { 'import/resolver': { typescript: true } },
+
+  rules: {
+    '@typescript-eslint/no-unused-vars': 'warn',
+
+    'import/prefer-default-export': 'off',
+
+    'unicorn/prevent-abbreviations': 'off',
+    'unicorn/filename-case': ['error', { case: 'camelCase' }],
+  },
 };
