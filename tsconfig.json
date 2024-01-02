@@ -1,0 +1,39 @@
+{
+  "include": ["./src/**/*.ts", "./src/**/*.tsx"],
+
+  "compilerOptions": {
+    //* Type checking
+    "exactOptionalPropertyTypes": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
+    "strict": true,
+
+    //* Modules
+    "module": "ESNext",
+    "moduleResolution": "Node",
+
+    //* Emit
+    "declaration": true,
+    "declarationMap": true,
+    // "downlevelIteration": true,
+    // "importHelpers": false,
+    // "noEmit": true,
+    "sourceMap": true,
+
+    //* Interop constraints
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+
+    //* Language and environment
+    "jsx": "preserve",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "target": "ES6",
+
+    //* Completeness
+    "skipLibCheck": true
+  }
+}
