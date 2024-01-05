@@ -14,14 +14,14 @@
     //* Modules
     "module": "ESNext",
     "moduleResolution": "Node",
+    "paths": { "@/*": ["./src/*"] },
+    "rootDir": "./src",
 
     //* Emit
     "declaration": true,
+    "declarationDir": "./dist",
     "declarationMap": true,
-    // "downlevelIteration": true,
-    // "importHelpers": false,
-    // "noEmit": true,
-    "sourceMap": true,
+    "emitDeclarationOnly": true,
 
     //* Interop constraints
     "esModuleInterop": true,
@@ -29,9 +29,9 @@
     "verbatimModuleSyntax": true,
 
     //* Language and environment
-    "jsx": "preserve",
-    "lib": ["DOM", "DOM.Iterable", "ES2020"],
-    "target": "ES2020",
+    "jsx": "react-jsxdev",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "target": "ESNext",
 
     //* Completeness
     "skipLibCheck": true

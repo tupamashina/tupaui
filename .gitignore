@@ -1,5 +1,10 @@
-# IDE
-.vscode
+# IDE and system files
+/.idea
+/.vscode
+.DS_STORE
+
+# Dependencies
+/node_modules
 
 # Yarn
 # https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
@@ -10,3 +15,6 @@
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+# Dist
+/dist
