@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
 
 import * as React from 'react';
+
 import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect';
 
 function useReactId(idOverride?: string) {
@@ -10,7 +11,7 @@ function useReactId(idOverride?: string) {
 
 let globalIdCounter = -1;
 
-function useTupaUiId(idOverride?: string) {
+function useClientSideGlobalId(idOverride?: string) {
   const idRef = React.useRef<string>();
   const [, forceUpdate] = React.useReducer((x: number) => x + 1, 0);
 
@@ -24,4 +25,4 @@ function useTupaUiId(idOverride?: string) {
   return idOverride || idRef.current;
 }
 
-export const useId = 'useId' in React ? useReactId : useTupaUiId;
+export const useId = 'useId' in React ? useReactId : useClientSideGlobalId;

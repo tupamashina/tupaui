@@ -80,6 +80,27 @@ module.exports = {
     // Import plugin
     'import/prefer-default-export': 'off',
 
+    'import/order': [
+      'warn',
+      {
+        distinctGroup: false,
+        'newlines-between': 'always',
+        alphabetize: { order: 'asc', orderImportKind: 'asc' },
+
+        groups: [
+          ['builtin', 'external', 'internal'],
+          ['index', 'sibling', 'parent'],
+          ['type', 'unknown'],
+        ],
+
+        pathGroups: [
+          { pattern: '@/**', group: 'parent', position: 'before' },
+          { pattern: '../**', group: 'parent', position: 'before' },
+          { pattern: './**', group: 'sibling', position: 'after' },
+        ],
+      },
+    ],
+
     // Unicorn plugin
     'unicorn/no-null': 'off',
     'unicorn/prevent-abbreviations': 'off',
