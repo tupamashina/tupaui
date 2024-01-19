@@ -1,4 +1,5 @@
 import commonjs from '@rollup/plugin-commonjs';
+import eslint from '@rollup/plugin-eslint';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
@@ -19,6 +20,7 @@ export default [true, false].map((isDev) => {
 
     plugins: [
       define({ replacements: { 'process.env.NODE_ENV': JSON.stringify(env) } }),
+      isDev && eslint({ throwOnError: true }),
 
       swc(
         defineRollupSwcOption({
