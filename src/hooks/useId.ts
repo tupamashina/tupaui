@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import { useForceUpdate } from './useForceUpdate';
 import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect';
 
 function useReactId(idOverride?: string) {
@@ -11,14 +12,14 @@ let globalIdCounter = -1;
 
 function useClientSideGlobalId(idOverride?: string) {
   const idRef = React.useRef<string>();
-  const [, forceUpdate] = React.useReducer((n: number) => n + 1, 0);
+  const forceUpdate = useForceUpdate();
 
   useIsomorphicLayoutEffect(() => {
     if (!idRef.current) {
       idRef.current = `tupaui-${(globalIdCounter += 1)}`;
       if (!idOverride) forceUpdate();
     }
-  }, [idOverride]);
+  }, [forceUpdate, idOverride]);
 
   return idOverride || idRef.current;
 }

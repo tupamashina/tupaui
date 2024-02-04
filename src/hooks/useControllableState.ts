@@ -83,7 +83,7 @@ export function useControllableState<
   controlledValue: T | undefined,
   uncontrolledDefaultValue: T | (() => T | undefined) | undefined,
   onChange: ((value: T, event?: E) => void) | undefined,
-  { stateName, componentName }: UseControllableStateDebuggingOptions = {},
+  debuggingOptions?: UseControllableStateDebuggingOptions,
 ) {
   const [uncontrolledValueState, setUncontrolledValueState] = React.useState(
     uncontrolledDefaultValue,
@@ -113,6 +113,8 @@ export function useControllableState<
   ).current;
 
   if (!IS_PROD) {
+    const { stateName, componentName } = debuggingOptions || {};
+
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useDebugValue(
       stateName ? { [stateName]: currentValue } : currentValue,
