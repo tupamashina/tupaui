@@ -1,12 +1,10 @@
 import * as React from 'react';
 
-import type { Writable } from 'type-fest';
-
 function setRefs<T>(refs: React.Ref<T>[], value: T) {
   for (const ref of refs)
     if (typeof ref === 'function') ref(value);
     // eslint-disable-next-line no-param-reassign
-    else if (ref) (ref as Writable<typeof ref>).current = value;
+    else if (ref) (ref as React.MutableRefObject<T>).current = value;
 }
 
 export function useComposedRefCallback<T>(

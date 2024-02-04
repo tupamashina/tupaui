@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
-
 import * as React from 'react';
 
 import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect';
@@ -13,7 +11,7 @@ let globalIdCounter = -1;
 
 function useClientSideGlobalId(idOverride?: string) {
   const idRef = React.useRef<string>();
-  const [, forceUpdate] = React.useReducer((x: number) => x + 1, 0);
+  const [, forceUpdate] = React.useReducer((n: number) => n + 1, 0);
 
   useIsomorphicLayoutEffect(() => {
     if (!idRef.current) {

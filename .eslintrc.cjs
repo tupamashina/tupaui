@@ -65,6 +65,7 @@ module.exports = {
 
     // TypeScript plugin
     '@typescript-eslint/no-unused-vars': 'warn',
+    '@typescript-eslint/prefer-nullish-coalescing': 'off',
 
     '@typescript-eslint/no-confusing-void-expression': [
       'error',

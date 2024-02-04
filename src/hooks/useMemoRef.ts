@@ -9,5 +9,5 @@ export function useMemoRef<T>(value: T) {
     valueRef.current = value;
   });
 
-  return valueRef as Readonly<typeof valueRef>;
+  return valueRef as Readonly<React.MutableRefObject<T>>;
 }
