@@ -2,29 +2,27 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 import { useIsomorphicLayoutEffect } from '@/hooks';
-import { useForceUpdate } from '@/hooks/useForceUpdate';
 
 type PortalContainer = Parameters<typeof ReactDOM.createPortal>[1];
 
 export interface PortalProps {
+  isOpen: boolean;
   children: React.ReactNode;
-  container?: PortalContainer | null;
+  container?: PortalContainer | null | undefined;
 }
 
 export const Portal: React.FC<PortalProps> = ({
+  isOpen,
   children,
   container: containerProp,
 }) => {
-  const bodyRef = React.useRef<HTMLElement | null>(null);
-  const forceUpdate = useForceUpdate();
+  const [container, setContainer] = React.useState<PortalContainer>();
 
-  useIsomorphicLayoutEffect(() => {
-    if (!bodyRef.current) {
-      bodyRef.current = document.body;
-      if (!containerProp) forceUpdate();
-    }
-  }, [containerProp, forceUpdate]);
+  useIsomorphicLayoutEffect(
+    () => setContainer(containerProp || document.body),
+    [containerProp],
+  );
 
-  const container = containerProp || bodyRef.current;
-  return container && ReactDOM.createPortal(children, container);
+  if (!isOpen || !container) return null;
+  return ReactDOM.createPortal(children, container);
 };

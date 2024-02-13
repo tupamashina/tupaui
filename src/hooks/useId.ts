@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-import { useForceUpdate } from './useForceUpdate';
 import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect';
 
 function useReactId(idOverride?: string) {
@@ -12,7 +11,7 @@ let globalIdCounter = -1;
 
 function useClientSideGlobalId(idOverride?: string) {
   const idRef = React.useRef<string>();
-  const forceUpdate = useForceUpdate();
+  const [, forceUpdate] = React.useReducer((n: number) => n + 1, 0);
 
   useIsomorphicLayoutEffect(() => {
     if (!idRef.current) {
